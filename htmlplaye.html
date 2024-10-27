@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oriel Group Presents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ORL GRP</h1>
+
+    <!-- Video player with a pre-uploaded video -->
+    <video id="videoPlayer" controls>
+        <source id="videoSource" src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Button to open the file dialog -->
+    <button onclick="document.getElementById('fileInput').click()">Upload and Play Video</button>
+
+    <!-- Hidden file input -->
+    <input type="file" id="fileInput" accept="video/*" onchange="loadVideo(event)">
+
+    <script>
+        function loadVideo(event) {
+            var file = event.target.files[0];
+            var video = document.getElementById("videoPlayer");
+            var videoSource = document.getElementById("videoSource");
+
+            if (file) {
+                var url = URL.createObjectURL(file);
+                videoSource.src = url;
+                video.load(); // Reload the video with the new source
+                video.play();
+            }
+        }
+    </script>
+
+</body>
+</html>
